@@ -1,31 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Steven Lunar</title>
-  <meta name="description" content="Steven Lunar 的個人網頁">
+  <meta name="description" content="Personal homepage of Steven Lunar">
   <script>
-    // 在畫面出現前先套用上次選的主題，避免閃爍
-    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-    document.documentElement.classList.add('js');
+    // 在畫面出現前先決定主題：優先用上次手動選的，否則跟隨系統
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'dark' && theme !== 'light') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.classList.add('js');
+    })();
   </script>
-  <link rel="stylesheet" href="style.css">
+  <!-- 改了 style.css 或 script.js 之後，把 ?v= 後面的數字加一，瀏覽器才不會用到舊的快取 -->
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top">Steven Lunar</a>
-      <nav aria-label="主選單">
-        <a href="#news">動態</a>
-        <a href="#research">研究</a>
-        <a href="#experience">經歷</a>
-        <a href="#writing">文章</a>
-        <a href="#contact">聯絡</a>
+      <nav aria-label="Main">
+        <a href="#news">News</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切換深色／淺色模式" title="切換深色／淺色模式">
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <!-- 淺色模式時顯示月亮，深色模式時顯示太陽 -->
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
   </header>
@@ -37,12 +47,13 @@
       <canvas id="net" aria-hidden="true"></canvas>
       <div class="wrap hero-inner">
         <div class="hero-text">
-          <p class="eyebrow">你的職稱 · 你的單位</p>
+          <p class="eyebrow">Your Title · Your Affiliation</p>
           <h1>Steven Lunar</h1>
           <p class="bio">
-            這裡用兩三句話介紹你自己：目前在<a href="#">某個單位</a>做什麼，
-            主要研究或關注的方向是什麼，之前在哪裡待過。
-            研究員的網站通常把這段寫得很直接，讓人十秒內知道你是誰。
+            Introduce yourself in two or three sentences: what you do at
+            <a href="#">your organization</a>, what you work on or care about most,
+            and where you were before. Researchers keep this part direct, so a
+            visitor knows who you are within ten seconds.
           </p>
           <p class="link-row">
             <a href="#">Email</a><span>/</span>
@@ -52,11 +63,11 @@
             <a href="#">X</a><span>/</span>
             <a href="#">LinkedIn</a>
           </p>
-          <ul class="chips" aria-label="研究興趣">
-            <li>研究興趣一</li>
-            <li>研究興趣二</li>
-            <li>研究興趣三</li>
-            <li>研究興趣四</li>
+          <ul class="chips" aria-label="Research interests">
+            <li>Interest One</li>
+            <li>Interest Two</li>
+            <li>Interest Three</li>
+            <li>Interest Four</li>
           </ul>
         </div>
         <!-- 換成照片：把下面這個 div 改成 <img class="portrait" src="photo.jpg" alt="Steven Lunar"> -->
@@ -64,110 +75,110 @@
       </div>
     </section>
 
-    <!-- ========== 動態 ========== -->
+    <!-- ========== News ========== -->
     <section id="news" class="wrap section reveal">
-      <h2><span class="num">01</span>動態</h2>
+      <h2><span class="num">01</span>News</h2>
       <ul class="news">
-        <li><time>2026.11</time><p>最新的一則消息，例如論文被某個會議接受。<span class="badge">New</span></p></li>
-        <li><time>2026.08</time><p>第二則消息，例如在某個研討會給了演講，附上<a href="#">投影片連結</a>。</p></li>
-        <li><time>2026.05</time><p>第三則消息，例如加入新的團隊或開始新的專案。</p></li>
-        <li><time>2025.12</time><p>第四則消息，例如開源了某個工具。</p></li>
+        <li><time>Nov 2026</time><p>Your latest update, such as a paper accepted at a conference. <span class="badge">New</span></p></li>
+        <li><time>Aug 2026</time><p>A second update, such as a talk you gave, with a link to <a href="#">the slides</a>.</p></li>
+        <li><time>May 2026</time><p>A third update, such as joining a new team or starting a new project.</p></li>
+        <li><time>Dec 2025</time><p>A fourth update, such as open-sourcing a tool.</p></li>
       </ul>
     </section>
 
-    <!-- ========== 研究 ========== -->
+    <!-- ========== Research ========== -->
     <section id="research" class="wrap section reveal">
-      <h2><span class="num">02</span>研究與專案</h2>
-      <p class="section-intro">用一句話說明你的研究主軸。代表作可以用 <span class="award">重點標籤</span> 標出來。</p>
+      <h2><span class="num">02</span>Research &amp; Projects</h2>
+      <p class="section-intro">Describe the main thread of your work in one sentence. Mark representative pieces with a <span class="award">Highlight</span> tag.</p>
 
       <article class="paper">
         <div class="thumb" data-art="heatmap"></div>
         <div class="paper-body">
-          <h3><a href="#">論文或專案標題一</a></h3>
-          <p class="authors"><strong>Steven Lunar</strong>, 共同作者 A, 共同作者 B</p>
-          <p class="venue"><em>會議或期刊名稱</em>, 2026 <span class="award">Oral</span></p>
-          <p class="paper-links"><a href="#">論文</a><span>/</span><a href="#">程式碼</a><span>/</span><a href="#">專案頁面</a><span>/</span><a href="#">BibTeX</a></p>
-          <p class="summary">用一句話說明這篇研究的核心想法與結果。</p>
+          <h3><a href="#">Title of Paper or Project One</a></h3>
+          <p class="authors"><strong>Steven Lunar</strong>, Coauthor A, Coauthor B</p>
+          <p class="venue"><em>Conference or Journal</em>, 2026 <span class="award">Oral</span></p>
+          <p class="paper-links"><a href="#">Paper</a><span>/</span><a href="#">Code</a><span>/</span><a href="#">Project Page</a><span>/</span><a href="#">BibTeX</a></p>
+          <p class="summary">One sentence on the core idea of this work and what it achieved.</p>
         </div>
       </article>
 
       <article class="paper">
         <div class="thumb" data-art="curves"></div>
         <div class="paper-body">
-          <h3><a href="#">論文或專案標題二</a></h3>
-          <p class="authors">共同作者 A, <strong>Steven Lunar</strong>, 共同作者 C</p>
-          <p class="venue"><em>會議或期刊名稱</em>, 2026</p>
-          <p class="paper-links"><a href="#">論文</a><span>/</span><a href="#">程式碼</a></p>
-          <p class="summary">用一句話說明這篇研究的核心想法與結果。</p>
+          <h3><a href="#">Title of Paper or Project Two</a></h3>
+          <p class="authors">Coauthor A, <strong>Steven Lunar</strong>, Coauthor C</p>
+          <p class="venue"><em>Conference or Journal</em>, 2026</p>
+          <p class="paper-links"><a href="#">Paper</a><span>/</span><a href="#">Code</a></p>
+          <p class="summary">One sentence on the core idea of this work and what it achieved.</p>
         </div>
       </article>
 
       <article class="paper">
         <div class="thumb" data-art="scatter"></div>
         <div class="paper-body">
-          <h3><a href="#">論文或專案標題三</a></h3>
-          <p class="authors"><strong>Steven Lunar</strong>, 共同作者 D</p>
-          <p class="venue"><em>會議或期刊名稱</em>, 2025 <span class="award">Spotlight</span></p>
-          <p class="paper-links"><a href="#">論文</a><span>/</span><a href="#">影片</a><span>/</span><a href="#">BibTeX</a></p>
-          <p class="summary">用一句話說明這篇研究的核心想法與結果。</p>
+          <h3><a href="#">Title of Paper or Project Three</a></h3>
+          <p class="authors"><strong>Steven Lunar</strong>, Coauthor D</p>
+          <p class="venue"><em>Conference or Journal</em>, 2025 <span class="award">Spotlight</span></p>
+          <p class="paper-links"><a href="#">Paper</a><span>/</span><a href="#">Video</a><span>/</span><a href="#">BibTeX</a></p>
+          <p class="summary">One sentence on the core idea of this work and what it achieved.</p>
         </div>
       </article>
 
       <article class="paper">
         <div class="thumb" data-art="graph"></div>
         <div class="paper-body">
-          <h3><a href="#">開源專案名稱</a></h3>
-          <p class="authors">個人專案</p>
+          <h3><a href="#">Name of an Open-Source Project</a></h3>
+          <p class="authors">Personal project</p>
           <p class="venue"><em>GitHub</em>, 2025</p>
-          <p class="paper-links"><a href="#">程式碼</a><span>/</span><a href="#">說明文件</a></p>
-          <p class="summary">沒有論文也沒關係，這裡同樣可以放你做過的工具或 side project。</p>
+          <p class="paper-links"><a href="#">Code</a><span>/</span><a href="#">Docs</a></p>
+          <p class="summary">No paper needed: tools and side projects you have built belong here too.</p>
         </div>
       </article>
     </section>
 
-    <!-- ========== 經歷 ========== -->
+    <!-- ========== Experience ========== -->
     <section id="experience" class="wrap section reveal">
-      <h2><span class="num">03</span>經歷</h2>
+      <h2><span class="num">03</span>Experience</h2>
       <ol class="timeline">
         <li>
-          <time>2024 — 現在</time>
+          <time>2024 — Present</time>
           <div>
-            <h3>職稱 <span>· 公司或實驗室</span></h3>
-            <p>一兩句話說明你在這裡負責什麼、做出了什麼。</p>
+            <h3>Job Title <span>· Company or Lab</span></h3>
+            <p>One or two sentences on what you are responsible for and what you have delivered.</p>
           </div>
         </li>
         <li>
           <time>2022 — 2024</time>
           <div>
-            <h3>職稱 <span>· 公司或實驗室</span></h3>
-            <p>一兩句話說明你在這裡負責什麼、做出了什麼。</p>
+            <h3>Job Title <span>· Company or Lab</span></h3>
+            <p>One or two sentences on what you were responsible for and what you delivered.</p>
           </div>
         </li>
         <li>
           <time>2018 — 2022</time>
           <div>
-            <h3>學位 <span>· 學校與系所</span></h3>
-            <p>主修、指導教授或論文題目。</p>
+            <h3>Degree <span>· University and Department</span></h3>
+            <p>Your major, advisor, or thesis topic.</p>
           </div>
         </li>
       </ol>
     </section>
 
-    <!-- ========== 文章 ========== -->
+    <!-- ========== Writing ========== -->
     <section id="writing" class="wrap section reveal">
-      <h2><span class="num">04</span>文章</h2>
+      <h2><span class="num">04</span>Writing</h2>
       <ul class="posts">
-        <li><a href="#"><span class="post-title">文章標題一：一篇技術筆記或讀書心得</span><span class="post-meta">2026.10 · 12 分鐘</span></a></li>
-        <li><a href="#"><span class="post-title">文章標題二：某個概念的圖解說明</span><span class="post-meta">2026.07 · 8 分鐘</span></a></li>
-        <li><a href="#"><span class="post-title">文章標題三：年度回顧或研究方法心得</span><span class="post-meta">2026.01 · 15 分鐘</span></a></li>
+        <li><a href="#"><span class="post-title">Post Title One: Technical Notes or a Paper Review</span><span class="post-meta">Oct 2026 · 12 min read</span></a></li>
+        <li><a href="#"><span class="post-title">Post Title Two: An Illustrated Guide to a Concept</span><span class="post-meta">Jul 2026 · 8 min read</span></a></li>
+        <li><a href="#"><span class="post-title">Post Title Three: A Year in Review</span><span class="post-meta">Jan 2026 · 15 min read</span></a></li>
       </ul>
     </section>
 
-    <!-- ========== 聯絡 ========== -->
+    <!-- ========== Contact ========== -->
     <section id="contact" class="wrap section reveal">
-      <h2><span class="num">05</span>聯絡</h2>
+      <h2><span class="num">05</span>Contact</h2>
       <div class="contact">
-        <p>想討論研究、合作，或只是打聲招呼，都歡迎來信。</p>
+        <p>Always happy to talk about research or collaboration.</p>
         <a class="btn" href="#">your.name@example.com</a>
       </div>
     </section>
@@ -176,9 +187,9 @@
 
   <footer class="wrap footer">
     <p>© 2026 Steven Lunar</p>
-    <a href="#top">回到頂端 ↑</a>
+    <a href="#top">Back to top ↑</a>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

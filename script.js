@@ -5,14 +5,22 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- 深色／淺色切換 ---------- */
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
   var toggle = document.getElementById('theme-toggle');
+
+  function setTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+  }
+
+  // <head> 裡的程式已經先設定過一次；這裡保險再確認一次
+  setTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+
   toggle.addEventListener('click', function () {
-    var current = root.dataset.theme ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    var next = current === 'dark' ? 'light' : 'dark';
-    root.dataset.theme = next;
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    setTheme(next);
     try { localStorage.setItem('theme', next); } catch (e) {}
-    drawNet();
+    if (typeof drawNet === 'function') drawNet();
   });
 
   /* ---------- 捲動淡入 ---------- */
@@ -130,7 +138,7 @@
   document.querySelectorAll('.thumb[data-art]').forEach(function (el, i) {
     var draw = art[el.dataset.art];
     if (!draw) return;
-    el.innerHTML = '<svg viewBox="0 0 180 120" role="img" aria-label="示意圖">' + draw(rng(7 + i * 131)) + '</svg>';
+    el.innerHTML = '<svg viewBox="0 0 180 120" role="img" aria-label="Illustration">' + draw(rng(7 + i * 131)) + '</svg>';
   });
 
   /* ---------- 開場背景：緩慢漂移的節點網路 ---------- */
@@ -238,6 +246,13 @@
     resizeTimer = setTimeout(function () { setupNet(); drawNet(); }, 150);
   });
 
-  // 系統主題改變時重畫，讓顏色跟上
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawNet);
+  // 系統主題改變時：如果使用者沒有手動選過，就跟著系統走
+  function onSystemThemeChange(e) {
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (err) {}
+    if (stored !== 'dark' && stored !== 'light') setTheme(e.matches ? 'dark' : 'light');
+    drawNet();
+  }
+  if (darkQuery.addEventListener) darkQuery.addEventListener('change', onSystemThemeChange);
+  else if (darkQuery.addListener) darkQuery.addListener(onSystemThemeChange);
 })();

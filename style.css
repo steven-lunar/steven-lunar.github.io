@@ -15,23 +15,7 @@
   --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
 }
 
-/* 深色：跟隨系統（除非手動選了淺色） */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #121412;
-    --surface: #1a1d1b;
-    --text: #e9e8e2;
-    --muted: #9c9d95;
-    --line: #2a2e2b;
-    --accent: #7fd1b6;
-    --accent-soft: #1c2f29;
-    --accent2: #f0a36b;
-    --accent2-soft: #3a2616;
-    --on-accent: #0f1f1a;
-    color-scheme: dark;
-  }
-}
-/* 深色：手動切換 */
+/* 深色模式：頁面載入時 JS 會在 <html> 寫上 data-theme="dark" 或 "light" */
 :root[data-theme="dark"] {
   --bg: #121412;
   --surface: #1a1d1b;
@@ -44,6 +28,22 @@
   --accent2-soft: #3a2616;
   --on-accent: #0f1f1a;
   color-scheme: dark;
+}
+/* 沒有 JS 時的備援：跟隨系統 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #121412;
+    --surface: #1a1d1b;
+    --text: #e9e8e2;
+    --muted: #9c9d95;
+    --line: #2a2e2b;
+    --accent: #7fd1b6;
+    --accent-soft: #1c2f29;
+    --accent2: #f0a36b;
+    --accent2-soft: #3a2616;
+    --on-accent: #0f1f1a;
+    color-scheme: dark;
+  }
 }
 
 /* ---------- 基礎 ---------- */
@@ -58,7 +58,6 @@ body {
   font-family: var(--font);
   font-size: 17px;
   line-height: 1.75;
-  transition: background-color 0.2s, color 0.2s;
 }
 
 a { color: var(--accent); text-decoration: none; }
@@ -125,6 +124,10 @@ p { margin: 0; }
   cursor: pointer;
 }
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle svg { display: block; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 /* ---------- 開場 ---------- */
 .hero {
@@ -269,7 +272,7 @@ h2::after {
 }
 .news li {
   display: grid;
-  grid-template-columns: 96px 1fr;
+  grid-template-columns: 104px 1fr;
   gap: 16px;
   padding: 10px 0;
   border-bottom: 1px dashed var(--line);
@@ -346,7 +349,7 @@ time {
 .timeline li {
   position: relative;
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 150px 1fr;
   gap: 16px;
   padding-bottom: 28px;
 }
@@ -435,8 +438,11 @@ time {
 
 /* ---------- 手機 ---------- */
 @media (max-width: 720px) {
-  .brand { display: none; }
-  .nav nav { margin-left: 0; flex: 1; }
+  /* 手機：名字和主題按鈕一列，選單連結另起一列 */
+  .nav-inner { flex-wrap: wrap; row-gap: 4px; }
+  .theme-toggle { margin-left: auto; }
+  .nav nav { order: 3; flex: 0 0 100%; gap: 0; justify-content: space-between; margin: 0 -5px; }
+  .nav nav a { font-size: 13px; padding: 4px 5px; }
 
   #net {
     opacity: 0.35;
@@ -452,7 +458,7 @@ time {
   .portrait { order: -1; width: 140px; border-radius: 16px; box-shadow: 8px 8px 0 var(--accent-soft); }
   .portrait span { font-size: 36px; }
 
-  .section { padding-top: 48px; }
+  .section { padding-top: 48px; scroll-margin-top: 84px; }
   h2 { font-size: 22px; }
 
   .news li { grid-template-columns: 1fr; gap: 0; }
