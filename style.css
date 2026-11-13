@@ -424,6 +424,111 @@ time {
 }
 .btn:hover { opacity: 0.9; text-decoration: none; }
 
+/* ---------- 專案頁面（projects/ 底下的頁面共用） ---------- */
+.project-head {
+  padding-top: 72px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+.project-head h1 {
+  max-width: 18em;
+  margin: 14px auto 22px;
+  font-size: clamp(30px, 5.2vw, 46px);
+  line-height: 1.2;
+}
+.project-authors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px 22px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.project-authors sup,
+.project-affil sup { font-weight: 400; color: var(--muted); margin-left: 1px; }
+.project-affil { margin-top: 6px; font-size: 15px; color: var(--muted); }
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+.btn.ghost {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.btn.ghost:hover { box-shadow: inset 0 0 0 1px var(--accent); color: var(--accent); opacity: 1; }
+
+.figure { margin: 0; }
+.figure img,
+.figure video { display: block; width: 100%; border: 1px solid var(--line); border-radius: 10px; }
+figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); text-align: center; }
+figcaption strong { color: var(--text); }
+
+.figure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.prose p { max-width: 44em; margin-bottom: 16px; }
+.prose p:last-child { margin-bottom: 0; }
+
+/* 左文右圖 */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+}
+
+.table-scroll { overflow-x: auto; }
+table.results {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.results th,
+.results td { padding: 10px 14px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.results th:first-child,
+.results td:first-child { text-align: left; }
+.results th { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--muted); }
+.results .ours td { font-weight: 700; background: var(--accent-soft); border-bottom: 0; }
+.results .ours td:first-child { border-radius: 8px 0 0 8px; color: var(--accent); }
+.results .ours td:last-child { border-radius: 0 8px 8px 0; }
+.table-note { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+.bibtex { position: relative; }
+.bibtex pre {
+  margin: 0;
+  padding: 20px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  cursor: pointer;
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
 /* ---------- 頁尾 ---------- */
 .footer {
   display: flex;
@@ -466,6 +571,10 @@ time {
   .thumb { max-width: 280px; }
   .timeline li { grid-template-columns: 1fr; gap: 0; }
   .posts a { flex-direction: column; gap: 2px; }
+
+  .project-head { padding-top: 48px; padding-bottom: 32px; }
+  .split { grid-template-columns: 1fr; gap: 24px; }
+  .figure-grid { gap: 8px; }
 }
 
 /* ---------- 減少動態效果的使用者 ---------- */

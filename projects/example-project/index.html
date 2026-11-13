@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Title of Paper or Project One · Steven Lunar</title>
+  <meta name="description" content="Project page for Title of Paper or Project One">
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (theme !== 'dark' && theme !== 'light') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+  <!-- 這一頁在 projects/example-project/ 底下，所以用 ../../ 回到網站根目錄拿共用的樣式 -->
+  <link rel="stylesheet" href="../../style.css?v=4">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../../">← Steven Lunar</a>
+      <nav aria-label="Sections">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#bibtex">BibTeX</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" fill="currentColor"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ========== 標題、作者、連結按鈕 ========== -->
+    <section class="wrap project-head">
+      <p class="eyebrow">Conference or Journal 2026 · <span class="award">Oral</span></p>
+      <h1>Title of Paper or Project One</h1>
+      <p class="project-authors">
+        <span><a href="../../">Steven Lunar</a><sup>1</sup></span>
+        <span><a href="#">Coauthor A</a><sup>1</sup></span>
+        <span><a href="#">Coauthor B</a><sup>2</sup></span>
+      </p>
+      <p class="project-affil"><sup>1</sup>First Affiliation &nbsp;·&nbsp; <sup>2</sup>Second Affiliation</p>
+      <div class="project-actions">
+        <a class="btn" href="#">Paper</a>
+        <a class="btn" href="#">arXiv</a>
+        <a class="btn" href="#">Code</a>
+        <a class="btn ghost" href="#">Video</a>
+        <a class="btn ghost" href="#bibtex">BibTeX</a>
+      </div>
+    </section>
+
+    <!-- ========== 主視覺圖 ========== -->
+    <section class="wrap">
+      <figure class="figure">
+        <!-- 換成真正的圖或影片：<img src="teaser.png" alt="..."> 或 <video src="teaser.mp4" autoplay loop muted playsinline></video> -->
+        <div class="figure-grid">
+          <div class="thumb" data-art="scatter"></div>
+          <div class="thumb" data-art="graph"></div>
+          <div class="thumb" data-art="heatmap"></div>
+        </div>
+        <figcaption><strong>Teaser.</strong> One sentence that tells a visitor what they are looking at and why it matters.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ========== Abstract ========== -->
+    <section id="abstract" class="wrap section reveal">
+      <h2><span class="num">01</span>Abstract</h2>
+      <div class="prose">
+        <p>Paste the abstract of the paper here. State the problem, why existing approaches fall short, what you propose, and the headline result.</p>
+        <p>A second paragraph can cover the main findings and what they imply, in plain language that someone outside the subfield can follow.</p>
+      </div>
+    </section>
+
+    <!-- ========== Method ========== -->
+    <section id="method" class="wrap section reveal">
+      <h2><span class="num">02</span>Method</h2>
+      <div class="split">
+        <div class="prose">
+          <p>Explain the approach in a few sentences. What goes in, what comes out, and what is the key idea that makes it work?</p>
+          <p>Point at the parts of the figure as you describe them, so the picture and the text can be read together.</p>
+        </div>
+        <figure class="figure">
+          <div class="thumb" data-art="graph"></div>
+          <figcaption><strong>Figure 1.</strong> Overview of the method.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== Results ========== -->
+    <section id="results" class="wrap section reveal">
+      <h2><span class="num">03</span>Results</h2>
+      <div class="split">
+        <div>
+          <div class="table-scroll">
+            <table class="results">
+              <thead>
+                <tr><th>Method</th><th>Metric A ↑</th><th>Metric B ↓</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Baseline</td><td>00.0</td><td>00.0</td></tr>
+                <tr><td>Prior work</td><td>00.0</td><td>00.0</td></tr>
+                <tr class="ours"><td>Ours</td><td>00.0</td><td>00.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">Describe the benchmark and what the numbers show.</p>
+        </div>
+        <figure class="figure">
+          <div class="thumb" data-art="curves"></div>
+          <figcaption><strong>Figure 2.</strong> What this plot compares.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== BibTeX ========== -->
+    <section id="bibtex" class="wrap section reveal">
+      <h2><span class="num">04</span>BibTeX</h2>
+      <div class="bibtex">
+        <button class="copy-btn" type="button" data-copy="#bibtex-code">Copy</button>
+<pre id="bibtex-code">@inproceedings{lunar2026title,
+  title     = {Title of Paper or Project One},
+  author    = {Lunar, Steven and A, Coauthor and B, Coauthor},
+  booktitle = {Conference or Journal},
+  year      = {2026}
+}</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap footer">
+    <p>© 2026 Steven Lunar</p>
+    <a href="../../">← Back to homepage</a>
+  </footer>
+
+  <script src="../../script.js?v=4"></script>
+</body>
+</html>

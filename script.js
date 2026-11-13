@@ -141,15 +141,44 @@
     el.innerHTML = '<svg viewBox="0 0 180 120" role="img" aria-label="Illustration">' + draw(rng(7 + i * 131)) + '</svg>';
   });
 
+  /* ---------- 複製按鈕（專案頁的 BibTeX） ---------- */
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = document.querySelector(btn.getAttribute('data-copy'));
+      if (!target) return;
+      var text = target.textContent;
+      function done(ok) {
+        btn.textContent = ok ? 'Copied' : 'Press Ctrl+C';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+      }
+      function selectFallback() {
+        var range = document.createRange();
+        range.selectNodeContents(target);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) {}
+        done(ok);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, selectFallback);
+      } else {
+        selectFallback();
+      }
+    });
+  });
+
   /* ---------- 開場背景：緩慢漂移的節點網路 ---------- */
   var canvas = document.getElementById('net');
-  var ctx = canvas.getContext('2d');
+  var ctx = canvas ? canvas.getContext('2d') : null; // 專案頁沒有這個動畫
   var nodes = [];
   var width = 0, height = 0;
   var running = false;
   var LINK = 130;
 
   function setupNet() {
+    if (!canvas) return;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = canvas.clientWidth;
     height = canvas.clientHeight;
@@ -173,6 +202,7 @@
   }
 
   function drawNet() {
+    if (!canvas) return;
     var style = getComputedStyle(root);
     var accent = style.getPropertyValue('--accent').trim();
     var accent2 = style.getPropertyValue('--accent2').trim();
@@ -218,7 +248,7 @@
   }
 
   function start() {
-    if (running || reduceMotion) return;
+    if (!canvas || running || reduceMotion) return;
     running = true;
     requestAnimationFrame(tick);
   }
@@ -228,7 +258,7 @@
   drawNet();
 
   // 只有在開場區塊看得到、且分頁在前景時才跑動畫
-  if ('IntersectionObserver' in window) {
+  if (canvas && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
       if (entries[0].isIntersecting && !document.hidden) start(); else stop();
     }).observe(canvas);
@@ -237,7 +267,7 @@
   }
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) stop();
-    else if (canvas.getBoundingClientRect().bottom > 0) start();
+    else if (canvas && canvas.getBoundingClientRect().bottom > 0) start();
   });
 
   var resizeTimer;
