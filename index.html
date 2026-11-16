@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Steven Lunar</title>
-  <meta name="description" content="Personal homepage of Steven Lunar">
+  <title>Chien-Feng Liu</title>
+  <meta name="description" content="Personal homepage of Chien-Feng Liu">
   <script>
     // 在畫面出現前先決定主題：優先用上次手動選的，否則跟隨系統
     (function () {
@@ -18,13 +18,13 @@
     })();
   </script>
   <!-- 改了 style.css 或 script.js 之後，把 ?v= 後面的數字加一，瀏覽器才不會用到舊的快取 -->
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#top">Steven Lunar</a>
+      <a class="brand" href="#top">Chien-Feng Liu</a>
       <nav aria-label="Main">
         <a href="#news">News</a>
         <a href="#research">Research</a>
@@ -48,7 +48,7 @@
       <div class="wrap hero-inner">
         <div class="hero-text">
           <p class="eyebrow">M.S. Student · National Taiwan University</p>
-          <h1>Steven Lunar</h1>
+          <h1>Chien-Feng Liu</h1>
           <p class="bio">
             I'm a master's student in Computer Science at
             <a href="https://www.csie.ntu.edu.tw/">National Taiwan University</a>,
@@ -70,8 +70,8 @@
             <li>Multimodal Learning</li>
           </ul>
         </div>
-        <!-- 換成照片：把下面這個 div 改成 <img class="portrait" src="photo.jpg" alt="Steven Lunar"> -->
-        <div class="portrait" aria-hidden="true"><span>SL</span></div>
+        <!-- 換成照片：把下面這個 div 改成 <img class="portrait" src="photo.jpg" alt="Chien-Feng Liu"> -->
+        <div class="portrait" aria-hidden="true"><span>CL</span></div>
       </div>
     </section>
 
@@ -92,13 +92,13 @@
       <p class="section-intro">Describe the main thread of your work in one sentence. Mark representative pieces with a <span class="award">Highlight</span> tag.</p>
 
       <article class="paper" id="paper-1">
-        <!-- 縮圖：可以換成論文裡的圖，<div class="thumb"><img src="images/compositionality-gap.png" alt="..."></div> -->
-        <div class="thumb" data-art="heatmap"></div>
+        <a class="thumb thumb-figure" href="https://arxiv.org/abs/2609.36921">
+          <img src="images/compositionality-gap.png" alt="Figure 1 of the paper: a model answers sound recognition, math QA and segment selection questions correctly, but fails the compositional question that combines them.">
+        </a>
         <div class="paper-body">
           <h3><a href="https://arxiv.org/abs/2609.36921">When Capabilities Fail to Compose: Diagnosing the Compositionality Gap in Large Audio-Language Models</a></h3>
-          <!-- 把你自己的名字用 <strong>...</strong> 包起來 -->
-          <p class="authors">Chien-Feng Liu, Chih-Kai Yang, Bo-Han Feng, Yu-Hsuan Li Liang, Hung-yi Lee, Cheng-Fu Chou</p>
-          <p class="venue"><em>arXiv preprint</em>, 2026 · Under review at ICASSP 2027</p>
+          <p class="authors"><strong>Chien-Feng Liu</strong>, Chih-Kai Yang, Bo-Han Feng, Yu-Hsuan Li Liang, Hung-yi Lee, Cheng-Fu Chou</p>
+          <p class="venue"><em>Under review</em>, 2026</p>
           <p class="paper-links"><a href="https://arxiv.org/abs/2609.36921">arXiv</a><span>/</span><a href="https://arxiv.org/pdf/2609.36921">PDF</a><span>/</span><a href="https://arxiv.org/bibtex/2609.36921">BibTeX</a></p>
           <p class="summary">Large audio-language models that can handle each audio skill on its own often fail when a task requires combining them: accuracy drops in 39 of 40 settings across four open-source models.</p>
         </div>
@@ -108,7 +108,7 @@
         <div class="thumb" data-art="curves"></div>
         <div class="paper-body">
           <h3><a href="#">Title of Paper or Project Two</a></h3>
-          <p class="authors">Coauthor A, <strong>Steven Lunar</strong>, Coauthor C</p>
+          <p class="authors">Coauthor A, <strong>Chien-Feng Liu</strong>, Coauthor C</p>
           <p class="venue"><em>Conference or Journal</em>, 2026</p>
           <p class="paper-links"><a href="#">Paper</a><span>/</span><a href="#">Code</a></p>
           <p class="summary">One sentence on the core idea of this work and what it achieved.</p>
@@ -119,7 +119,7 @@
         <div class="thumb" data-art="scatter"></div>
         <div class="paper-body">
           <h3><a href="#">Title of Paper or Project Three</a></h3>
-          <p class="authors"><strong>Steven Lunar</strong>, Coauthor D</p>
+          <p class="authors"><strong>Chien-Feng Liu</strong>, Coauthor D</p>
           <p class="venue"><em>Conference or Journal</em>, 2025 <span class="award">Spotlight</span></p>
           <p class="paper-links"><a href="#">Paper</a><span>/</span><a href="#">Video</a><span>/</span><a href="#">BibTeX</a></p>
           <p class="summary">One sentence on the core idea of this work and what it achieved.</p>
@@ -194,7 +194,7 @@
   </main>
 
   <footer class="wrap footer">
-    <p>© 2026 Steven Lunar</p>
+    <p>© 2026 Chien-Feng Liu</p>
     <a href="#top">Back to top ↑</a>
   </footer>
 
