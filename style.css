@@ -370,6 +370,20 @@ time {
 .timeline h3 span { font-weight: 400; color: var(--muted); }
 .timeline p { font-size: 15px; color: var(--muted); }
 
+/* 經歷區裡的小標題（Education / Experience） */
+.subhead {
+  margin: 0 0 16px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.timeline + .subhead { margin-top: 40px; }
+.paper { scroll-margin-top: 72px; }
+.paper:target { background: var(--accent-soft); }
+
 /* ---------- 文章 ---------- */
 .posts { list-style: none; margin: 0; padding: 0; }
 .posts a {

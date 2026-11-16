@@ -18,7 +18,7 @@
     })();
   </script>
   <!-- 改了 style.css 或 script.js 之後，把 ?v= 後面的數字加一，瀏覽器才不會用到舊的快取 -->
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -28,7 +28,7 @@
       <nav aria-label="Main">
         <a href="#news">News</a>
         <a href="#research">Research</a>
-        <a href="#experience">Experience</a>
+        <a href="#experience">Background</a>
         <a href="#writing">Writing</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -47,7 +47,7 @@
       <canvas id="net" aria-hidden="true"></canvas>
       <div class="wrap hero-inner">
         <div class="hero-text">
-          <p class="eyebrow">Your Title · Your Affiliation</p>
+          <p class="eyebrow">M.S. Student · National Taiwan University</p>
           <h1>Steven Lunar</h1>
           <p class="bio">
             Introduce yourself in two or three sentences: what you do at
@@ -64,10 +64,9 @@
             <a href="#">LinkedIn</a>
           </p>
           <ul class="chips" aria-label="Research interests">
-            <li>Interest One</li>
-            <li>Interest Two</li>
-            <li>Interest Three</li>
-            <li>Interest Four</li>
+            <li>Video LLMs</li>
+            <li>Audio LLMs</li>
+            <li>Multimodal Learning</li>
           </ul>
         </div>
         <!-- 換成照片：把下面這個 div 改成 <img class="portrait" src="photo.jpg" alt="Steven Lunar"> -->
@@ -91,7 +90,7 @@
       <h2><span class="num">02</span>Research &amp; Projects</h2>
       <p class="section-intro">Describe the main thread of your work in one sentence. Mark representative pieces with a <span class="award">Highlight</span> tag.</p>
 
-      <article class="paper">
+      <article class="paper" id="paper-1">
         <div class="thumb" data-art="heatmap"></div>
         <div class="paper-body">
           <h3><a href="projects/example-project/">Title of Paper or Project One</a></h3>
@@ -136,29 +135,36 @@
       </article>
     </section>
 
-    <!-- ========== Experience ========== -->
+    <!-- ========== Education & Experience ========== -->
     <section id="experience" class="wrap section reveal">
-      <h2><span class="num">03</span>Experience</h2>
+      <h2><span class="num">03</span>Education &amp; Experience</h2>
+
+      <h3 class="subhead">Education</h3>
       <ol class="timeline">
         <li>
-          <time>2024 — Present</time>
+          <time>2025 — Present</time>
           <div>
-            <h3>Job Title <span>· Company or Lab</span></h3>
-            <p>One or two sentences on what you are responsible for and what you have delivered.</p>
+            <h3>M.S. in Computer Science <span>· National Taiwan University</span></h3>
+            <p>Department of Computer Science and Information Engineering. Research on Video LLMs and Audio LLMs.</p>
           </div>
         </li>
         <li>
-          <time>2022 — 2024</time>
+          <time>2020 — 2025</time>
           <div>
-            <h3>Job Title <span>· Company or Lab</span></h3>
-            <p>One or two sentences on what you were responsible for and what you delivered.</p>
+            <h3>B.S. in Chemistry <span>· National Taiwan University</span></h3>
+            <p>Minors in Computer Science and Economics.</p>
           </div>
         </li>
+      </ol>
+
+      <h3 class="subhead">Experience</h3>
+      <ol class="timeline">
         <li>
-          <time>2018 — 2022</time>
+          <!-- 填上實習的起訖時間，例如 Jul 2025 — Present -->
+          <time>20XX — 20XX</time>
           <div>
-            <h3>Degree <span>· University and Department</span></h3>
-            <p>Your major, advisor, or thesis topic.</p>
+            <h3>Research Intern <span>· ASUS</span></h3>
+            <p>Continued my research on multimodal LLMs, leading to <a href="#paper-1">Title of Paper or Project One</a>.</p>
           </div>
         </li>
       </ol>
